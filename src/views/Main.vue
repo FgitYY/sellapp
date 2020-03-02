@@ -55,8 +55,8 @@
         </div>
       </div>
       <div class="cenetr">
-        <h1>￥{{total}}</h1>
-        <p>另需配送费￥4元</p>
+        <h1 :class="total==0?'h1':'h1s'">￥{{total}}</h1>
+        <p v-html="total>20?'运费￥0元':'另需配送费￥4元'"></p>
       </div>
       <div class="rt">
         <h1 v-html="total>20?'已免配送费':'￥20起送'"></h1>
@@ -314,9 +314,16 @@ a {
   .cenetr {
     display: flex;
     align-items: center;
-    h1 {
+    .h1 {
       border-right: 1px solid #2a353a;
       padding-right: 5px;
+      color: #2a353a;
+      font-size: 24px;
+    }
+    .h1s{
+       border-right: 1px solid #2a353a;
+      padding-right: 5px;
+      color: red;
       font-size: 24px;
     }
     p {
