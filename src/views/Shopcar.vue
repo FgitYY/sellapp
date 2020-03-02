@@ -47,6 +47,7 @@ export default {
 <style lang="less" scoped>
 .shopcontent {
   .content-main {
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     .content-lt {
@@ -57,6 +58,7 @@ export default {
       margin-right: 10px;
       p{
         width: 20px;
+        text-align: center;
       }
       button {
         width: 20px;
@@ -87,4 +89,6 @@ export default {
   padding: 10px;
   background-color: #f4f4f4;
 }
+
 </style>
+

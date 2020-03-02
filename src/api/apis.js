@@ -4,7 +4,7 @@ import axios from 'axios'
 // 相等
 //创建一个请求对象
 const req= axios.create({
-    baseURL:'http://127.0.0.1:3000',//基本路径
+    baseURL:'http://192.168.1.5:3000',//基本路径
     timeout: 5000//ms  请求5秒 10秒没请求到就提示超时   超时限制
 })
 // 二次封装

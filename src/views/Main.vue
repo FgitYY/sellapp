@@ -44,8 +44,9 @@
     <!-- 二级路由出口 -->
     <router-view></router-view>
    <transition name="shopcar">
-    <div v-show="shopcartop" class="shopchar-top">
-      <shopcar></shopcar>
+      <div  v-show="shopcartop" class="shopchar-top">
+        <div class="mask"></div>
+          <shopcar class="neir"></shopcar>
     </div>
       </transition>
     <div @click="shopcartop=!shopcartop" class="shopchar-bar">
@@ -99,9 +100,7 @@ export default {
     };
   },
   methods: {
-    clickremove() {
-     this.$Modal.remove();//关闭Mdoel
-    }
+
   },
   created() {
     //发送请求
@@ -129,6 +128,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.neir{
+  position: relative;
+  z-index: 1004;
+  background-color: #fff;
+}
+.mask {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(55,55,55,.6);
+    height: 100%;
+    z-index: 1000;
+  }
 .ivu-modal{
   background-color: red;
 }
@@ -145,6 +159,7 @@ export default {
     height: 100%;
     position: absolute;
     left: 0;
+    z-index: 0;
     top: 0;
     background: inherit;
     filter: blur(5px);
@@ -169,6 +184,7 @@ export default {
       }
     }
     .avatar-right {
+    
       width: 60%;
       height: auto;
       .avatar-right-top {
@@ -258,7 +274,7 @@ a {
 .shopchar-top{
   position: fixed;
   width: 100%;
-  height: 200px;
+  height: auto;
   bottom: 50px;
   background-color: #fff;
 }
