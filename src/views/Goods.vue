@@ -81,10 +81,13 @@ export default {
       this.rightDiv.scrollToElement(document.getElementById(i), 1000); //滚动到是定位置
     },
     clickadd(name){
-      this.$store.commit('goodsadd',name);
+      this.$store.commit('goodsadd',name);      
+      this.$store.commit('setgoods')
     },
     clickdec(name){
       this.$store.commit('goodsdec',name)
+      this.$store.commit('setgoods')
+
     }
   },
   created() {
@@ -134,7 +137,6 @@ export default {
         arr.push({ min: total, max: total + cutHight, index: i });  
         total += cutHight;
         // 根据规律判断出区间 为最小值为前面div的和  最大值为前面div的和加自身的高
-
       }
       return arr;
     },
@@ -154,7 +156,7 @@ export default {
   display: flex;
   .goods_left {
     background-color: #f3f6f6;
-    height: 400px;
+    height: 300px;
     overflow: scroll;
     width: 80px;
     .item-left {

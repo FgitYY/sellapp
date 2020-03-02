@@ -5,7 +5,9 @@ vue.use(vuex)
 const store = new vuex.Store({//store实例对象
     //存放所有交互数据
     state: {
-        goodslist: []//商品的数组
+        goodslist: [],//商品的数组
+        goods: [],
+        total:0
     },
     //改变state的唯一方式
     mutations: {
@@ -20,6 +22,8 @@ const store = new vuex.Store({//store实例对象
                 for (let v of value.foods) {
                     if (v.name == name) {
                         v.num += 1
+                        state.total+=v.price
+                        return
                     }
                 }
             }
@@ -30,33 +34,40 @@ const store = new vuex.Store({//store实例对象
                 for (let v of value.foods) {
                     if (v.name == name) {
                         v.num -= 1
+                        state.total-=v.price
+                        return
                     }
                 }
             }
         },
-        goodsww(state) {
-            let newArr = [];
-            state.goodslist.forEach((value, index) => {
-                newArr[index] = value;
-                newArr[index].foods = value.foods.filter(
-                    item => item.num != 0)
-            })
-        }
+        setgoods(state) {
+            //一个新的临时数组
+            //遍历当前数组
+           state.goods=[]
+           for(let title of state.goodslist){
+               for(let i of title.foods){
+                   if(i.num>0){
+                       state.goods.push(i)
+                   }
+               }
+           }
+
     },
+    //清空购物车
+       goodsclear(state){
+          for(let value of state.goodslist){
+              for(let v of value.foods){
+                  v.num=0
+                  state.total=0
+              }
+          }
+       }
+
     //vuex版本的计算属性
-    getters: {
-        goods1: state => {
-            return  state.goodslist.forEach((i) => {
-                    state.goodslist[i].foods.forEach((value)=>{
-                       value.num.filter(itm=>itm.num!=0)
-                   })
-                })
-         
-        },
-    }
+ }
 })
 //mutations函数必须手动触发
 //两个参数 第一个参数的名字 第二个要传入的参数
 // store.commit('chen')
-
+store.commit('setgoods')
 export default store

@@ -50,16 +50,16 @@
       </transition>
     <div @click="shopcartop=!shopcartop" class="shopchar-bar">
       <div class="shopchar-img">
-        <div class="shop-img-content">
+        <div :class="total==0?'shop-img-content':'img-content-shop'">
           <Icon type="md-cart" />
         </div>
       </div>
       <div class="cenetr">
-        <h1>￥0</h1>
+        <h1>￥{{total}}</h1>
         <p>另需配送费￥4元</p>
       </div>
       <div class="rt">
-        <h1>￥20起送</h1>
+        <h1 v-html="total>20?'已免配送费':'￥20起送'"></h1>
       </div>
     </div>
     <Modal  v-model="modal11" :closable="false" footerHide  fullscreen>
@@ -120,6 +120,9 @@ export default {
   computed:{
     goodscar(){
       return this.$store.state.goodslist
+    },
+    total(){
+      return this.$store.state.total
     }
   }
 };
@@ -286,12 +289,25 @@ a {
       align-items: center;
       font-size: 30px;
     }
+    .img-content-shop {
+      width: 50px;
+      height: 50px;
+      background-color: #2a353a;
+      border-radius: 50%;
+      margin-left: 10px;
+      margin-top: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      background-color:orange;
+      color: #fff
+    }
   }
   .rt {
     background-color: #2a353a;
-
     h1 {
-      padding: 15px 30px 15px 30px;
+      padding: 15px 20px 15px 20px;
       font-size: 14px;
     }
   }
